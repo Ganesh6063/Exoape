@@ -6,9 +6,17 @@ import PlayReel from './components/PlayReel'
 import Pictures from './components/Pictures'
 import Spread from './components/Spread'
 import Footer from './components/Footer'
+import LocomotiveScroll from 'locomotive-scroll';
+
+
 
 
 function App() {
+  
+  
+
+const scroll = new LocomotiveScroll();
+
   return (
     <div className='w-full '>
       <Navbar/>

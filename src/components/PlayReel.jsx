@@ -1,13 +1,53 @@
-import React from 'react'
+
+
+import gsap, { Power4, ScrollTrigger } from 'gsap/all';
+import React, { useEffect, useRef } from 'react'
 
 function PlayReel() {
+
+  const parent = useRef(null);
+  const videodiv = useRef(null);
+  const play = useRef(null);
+  const reel = useRef(null);
+
+
+  useEffect(()=>{
+    gsap.registerPlugin(ScrollTrigger)
+   
+     var tl = gsap.timeline({
+      scrollTrigger:{
+        trigger: parent.current,
+        top:"0 0",
+        pin:true,
+        scrub:1,}
+     })
+    tl.
+    to(videodiv.current,{
+    width:"120%",
+    height :"120%",
+     ease: Power4
+
+    },'a')
+    .to(play.current,{
+      x: "100%",
+      
+      ease: Power4
+    },'a')
+    .to(reel.current,{
+      x: "-100%",
+     
+      ease: Power4
+    },'a')
+
+
+  });
+  
   return (
-    <div className='w-full h-screen overflow-hidden relative bg-black'>
+    <div ref={parent} className='w-full h-screen  overflow-hidden  relative bg-black'>
         
-        <div className='w-40 sm:w-96 aspect-video overflow-hidden  absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'> 
-        <video muted loop autoPlay  className='absolute scale-[2.5] ute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
-         src="
-https://download-video.akamaized.net/v3-1/playback/334619e0-f92f-4627-ba88-dfe521b4e062/9e976370?__token__=st=1721217232~exp=1721231632~acl=%2Fv3-1%2Fplayback%2F334619e0-f92f-4627-ba88-dfe521b4e062%2F9e976370%2A~hmac=8e8784a746d714c78d83c4b788b72cd2d970f1e90ab29d45bb0f15fb5a596dab&r=dXMtY2VudHJhbDE%3D"></video>
+        <div ref={videodiv} className='w-40  sm:w-96 absolute  aspect-video  overflow-hidden  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'> 
+        <video muted loop autoPlay className='w-full h-full object-cover'
+         src="https://player.vimeo.com/progressive_redirect/playback/914798271/rendition/720p/file.mp4?loc=external&log_user=0&signature=2af493277d050009920c26416a8d62a9a8c316353242c609ee157fcf1e300076"></video>
         
        
         </div>
@@ -18,8 +58,8 @@ https://download-video.akamaized.net/v3-1/playback/334619e0-f92f-4627-ba88-dfe52
             <h3>Work in motion</h3>
             </div>
             <h1 className='w-full flex justify-center gap-32  sm:gap-96 items-center'>
-                <div className='text-4xl sm:text-8xl font-light'>Play</div>
-                <div  className='text-4xl sm:text-8xl font-light'>Reel</div>
+                <div ref={play} className='text-4xl sm:text-8xl font-light'>Play</div>
+                <div  ref={reel} className='text-4xl sm:text-8xl font-light'>Reel</div>
             </h1>
             <p className='text-center px-10 text-xs'>Our work is best experienced in motion. Don't forget to put on your headphones.</p>
         </div>

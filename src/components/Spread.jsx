@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import React from 'react'
 
 function Spread() {
@@ -10,10 +11,20 @@ function Spread() {
           <h1>In the media</h1>
          </div>
 
-         <div className='heading mt-10 text-center'>
-         <h1 className='capitalize text-6xl tracking-tighter'>Spread</h1>
-         <h1 className='capitalize text-6xl tracking-tighter'>the news</h1>
-         <p className='w-2/3 mx-auto mt-5 text-sm leading-2'>Find out more about our work on these leading design and technology platforms.</p>
+         <div className='heading mt-10 text-center overflow-hidden'>
+          {["Spread", "the news"].map((item,index)=>{
+            return <h1 key={index} className='capitalize text-6xl sm:text-9xl overflow-hidden tracking-tighter'>
+            <motion.span
+               initial={{rotate: 90, y: "40%" , opacity: 0}}
+               whileInView={{rotate: 0, y:0, opacity: 1}}
+               transition={{ease:[0.22,1,0.36,1],
+                   duration: 0.8,
+               
+               }}
+                className='inline-block origin-left'>{item}</motion.span>
+             </h1>
+          })}
+         <p className='w-2/3 mx-auto sm:w-1/3 mt-5 sm:mt-10 sm:text-xl text-sm leading-2'>Find out more about our work on these leading design and technology platforms.</p>
          <a className='border-b-[0.5px] border-zinc-500    mt-5 inline-block' href="#">Browser all news</a>
          </div>
 
